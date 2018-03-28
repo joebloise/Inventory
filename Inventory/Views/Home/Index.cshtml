@@ -1,0 +1,47 @@
+﻿@using System.Data
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<br />
+
+<form method="post" action="/Home/Search">
+
+    <table>
+        <tr>
+            <td>SLoc:</td><td><input type="text" name="SLoc" /></td>
+        </tr>
+        <tr>
+            <td>Component:</td><td><input type="text" name="Component" /></td>
+        </tr>
+    </table>
+     <br />
+    <input type="submit" value="Search" />
+
+</form>
+
+<br />
+<hr />
+<br />
+
+@if(ViewBag.SearchResult != null)
+{
+    <table>
+        <tr>
+            <th>Location</th>
+            <th>Component</th>
+        </tr>
+
+        @foreach(DataRow r in ViewBag.SearchResult.Rows)
+        {
+            <tr>
+                <td>@r["SLoc"]</td>
+                <td>@r["Component"]</td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+   <span>Search by location or component</span>
+}
